@@ -5,6 +5,7 @@ import {
    Table,
    Tbody,
    Td,
+   Text,
    Th,
    Thead,
    Tooltip,
@@ -17,14 +18,22 @@ import { invoices } from "../db.json";
 
 function DataTable() {
    const [tax, setTax] = useState(0);
+   const [taxRate, setTaxRate] = useState("0%");
    const toast = useToast();
 
    const handleCalculateTax = (amount, item_type) => {
       let tax_rate;
 
-      if (item_type === 0) tax_rate = 5 / 100;
-      else if (item_type === 1) tax_rate = 8 / 100;
-      else tax_rate = 12 / 100;
+      if (item_type === 0) {
+         tax_rate = 5 / 100;
+         setTaxRate("5%");
+      } else if (item_type === 1) {
+         tax_rate = 8 / 100;
+         setTaxRate("8%");
+      } else {
+         tax_rate = 12 / 100;
+         setTaxRate("12%");
+      }
 
       setTax(amount * tax_rate);
       toast({
@@ -105,7 +114,7 @@ function DataTable() {
                         {item.sno}
                      </Td>
                      <Td textAlign={"center"} fontWeight={500}>
-                        {item.amount}
+                        ₹{item.amount}
                      </Td>
                      <Td textAlign={"center"} fontWeight={500}>
                         {item.item_type}
@@ -113,12 +122,12 @@ function DataTable() {
                      <Td textAlign={"center"}>
                         {item.item_type > 2 ? (
                            <Tooltip
-                              w={40}
+                              w={44}
                               textAlign={"center"}
                               hasArrow
                               placement={"right"}
                               label={
-                                 "calculation not allowed for item type greater than 2"
+                                 "for tax-calculation item type should be 0, 1 & 2"
                               }
                            >
                               <Button
@@ -147,7 +156,7 @@ function DataTable() {
                ))}
             </Tbody>
          </Table>
-         <HStack py={7}>
+         <HStack py={7} align="flex-end">
             <Heading
                size={"lg"}
                align={"center"}
@@ -166,8 +175,16 @@ function DataTable() {
                fontWeight={800}
                letterSpacing={0.5}
             >
-               {tax || "0.00"}
+               ₹{tax.toFixed(2) || "0.00"}
             </Heading>
+            <Text
+               color={"green.500"}
+               fontFamily={"Helvetica"}
+               fontWeight={600}
+               letterSpacing={0.5}
+            >
+               (Tax Rate : {taxRate})
+            </Text>
          </HStack>
       </VStack>
    );
