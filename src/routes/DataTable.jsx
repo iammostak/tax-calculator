@@ -42,19 +42,49 @@ function DataTable() {
          >
             data table
          </Heading>
-         <Table size={"lg"} variant={"striped"} colorScheme={"blue"}>
+         <Table
+            size={"lg"}
+            border={"1px solid"}
+            borderColor={"blue.100"}
+            variant={"striped"}
+            colorScheme={"blue"}
+         >
             <Thead bg={"blue.500"}>
                <Tr>
-                  <Th w={200} textAlign={"center"} color={"white"}>
-                     S.No
+                  <Th
+                     w={210}
+                     fontSize={"md"}
+                     textAlign={"center"}
+                     textTransform={"capitalize"}
+                     color={"white"}
+                  >
+                     Serial No.
                   </Th>
-                  <Th w={200} textAlign={"center"} color={"white"}>
+                  <Th
+                     w={210}
+                     fontSize={"md"}
+                     textAlign={"center"}
+                     textTransform={"capitalize"}
+                     color={"white"}
+                  >
                      Amount
                   </Th>
-                  <Th w={200} textAlign={"center"} color={"white"}>
+                  <Th
+                     w={210}
+                     fontSize={"md"}
+                     textAlign={"center"}
+                     textTransform={"capitalize"}
+                     color={"white"}
+                  >
                      Item Type
                   </Th>
-                  <Th w={200} textAlign={"center"} color={"white"}>
+                  <Th
+                     w={210}
+                     fontSize={"md"}
+                     textAlign={"center"}
+                     textTransform={"capitalize"}
+                     color={"white"}
+                  >
                      Calculate Tax
                   </Th>
                </Tr>
@@ -62,9 +92,15 @@ function DataTable() {
             <Tbody>
                {invoices.map((item) => (
                   <Tr key={item.sno}>
-                     <Td textAlign={"center"}>{item.sno}</Td>
-                     <Td textAlign={"center"}>{item.amount}</Td>
-                     <Td textAlign={"center"}>{item.item_type}</Td>
+                     <Td textAlign={"center"} fontWeight={500}>
+                        {item.sno}
+                     </Td>
+                     <Td textAlign={"center"} fontWeight={500}>
+                        {item.amount}
+                     </Td>
+                     <Td textAlign={"center"} fontWeight={500}>
+                        {item.item_type}
+                     </Td>
                      <Td textAlign={"center"}>
                         {item.item_type > 2 ? (
                            <Tooltip
