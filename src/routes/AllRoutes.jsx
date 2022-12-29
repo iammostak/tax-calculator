@@ -6,7 +6,7 @@ function AllRoutes() {
    return (
       <Routes>
          <Route path="/" element={<DataTable />} />
-         <Route path="/importcsv" element={<ImportCSV />} />
+         <Route path="/uploadcsv" element={<ImportCSV />} />
       </Routes>
    );
 }

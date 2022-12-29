@@ -31,12 +31,12 @@ function Navbar() {
             </Button>
             <Button
                as={NavLink}
-               to="/importcsv"
+               to="/uploadcsv"
                px={7}
                colorScheme={"blue"}
                borderRadius={"3xl"}
             >
-               import csv
+               upload csv
             </Button>
          </HStack>
       </Flex>
