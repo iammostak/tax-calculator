@@ -9,6 +9,7 @@ import {
    Thead,
    Tooltip,
    Tr,
+   useToast,
    VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -16,6 +17,7 @@ import { invoices } from "../db.json";
 
 function DataTable() {
    const [tax, setTax] = useState(0);
+   const toast = useToast();
 
    const handleCalculateTax = (amount, item_type) => {
       let tax_rate;
@@ -25,6 +27,13 @@ function DataTable() {
       else tax_rate = 12 / 100;
 
       setTax(amount * tax_rate);
+      toast({
+         title: "Tax Calculated Successfully",
+         status: "success",
+         position: "top",
+         duration: 3000,
+         isClosable: true,
+      });
    };
 
    return (
