@@ -101,10 +101,11 @@ function ImportCSV() {
             pb={4}
             color={"blackAlpha.700"}
          >
-            Upload a .csv file, File should have s.no, amount, item_type in it
-            to get the texes.
-            <br /> Also you will be getting the taxes of those amounts which
-            have item_type as 0, 1 or 2 other than that taxes will be "NA"
+            Upload a .csv file, File should have s.no, amount, and item_type in
+            it to get the taxes.
+            <br />
+            Also, you will be getting the taxes of those amounts which have
+            item_type as 0, 1, or 2 other than that taxes will be "NA"
          </Text>
          <HStack>
             <Input
