@@ -101,11 +101,11 @@ function ImportCSV() {
                   import invoice.csv
                </Heading>
                <Text
-                  fontFamily={"Helvetica"}
-                  letterSpacing={0.5}
-                  align={"center"}
-                  w={700}
                   pb={4}
+                  w={700}
+                  fontWeight={500}
+                  align={"center"}
+                  letterSpacing={0.2}
                   color={"blackAlpha.700"}
                >
                   Upload a .csv file, File should have s.no, amount, and
@@ -120,6 +120,8 @@ function ImportCSV() {
                   p={4}
                   borderRadius={"md"}
                   boxShadow={"md"}
+                  border={"1px solid"}
+                  borderColor={"blackAlpha.50"}
                   isRequired
                >
                   <FormLabel>File</FormLabel>
@@ -158,16 +160,26 @@ function ImportCSV() {
                >
                   tax-calculated
                </Heading>
-               <VStack p={4} w={"xs"} borderRadius={"md"} boxShadow={"md"}>
+               <VStack
+                  p={4}
+                  w={"xs"}
+                  align={"stretch"}
+                  borderRadius={"md"}
+                  boxShadow={"md"}
+                  border={"1px solid"}
+                  borderColor={"blackAlpha.100"}
+               >
                   <Text
                      pb={2}
                      fontWeight={500}
                      lineHeight={1.4}
-                     letterSpacing={0.2}
+                     letterSpacing={0.1}
                      color={"blackAlpha.700"}
+                     align={"left"}
                   >
-                     Tax column has been added download the file of upload
-                     another one
+                     Tax has been calculated.
+                     <br />
+                     Download or upload an another file.
                   </Text>
                   <Button
                      w={"full"}
