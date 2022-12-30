@@ -1,3 +1,4 @@
+import "./App.css";
 import { Container } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import AllRoutes from "./routes/AllRoutes";

@@ -43,6 +43,7 @@ function DataTable() {
          duration: 3000,
          isClosable: true,
       });
+      window.scrollBy(0, window.innerHeight);
    };
 
    return (
