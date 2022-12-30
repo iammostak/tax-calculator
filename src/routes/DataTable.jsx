@@ -127,7 +127,7 @@ function DataTable() {
                               hasArrow
                               placement={"right"}
                               label={
-                                 "for tax-calculation item type should be 0, 1 & 2"
+                                 "for tax-calculation item type should be 0, 1 or 2"
                               }
                            >
                               <Button

@@ -1,3 +1,4 @@
+import { AttachmentIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Button, Flex, Heading, HStack } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 
@@ -35,6 +36,7 @@ function Navbar() {
                px={7}
                colorScheme={"blue"}
                borderRadius={"3xl"}
+               leftIcon={<AttachmentIcon />}
             >
                upload csv
             </Button>

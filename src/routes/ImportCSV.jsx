@@ -1,5 +1,8 @@
+import { AttachmentIcon, DownloadIcon } from "@chakra-ui/icons";
 import {
    Button,
+   FormControl,
+   FormLabel,
    Heading,
    HStack,
    Input,
@@ -48,6 +51,7 @@ function ImportCSV() {
    const [inputFile, setInputFile] = useState({});
    const toast = useToast();
    const [url, setUrl] = useState("");
+   const [state, setState] = useState(false);
 
    const handleFile = () => {
       if (!inputFile.name) {
@@ -73,6 +77,7 @@ function ImportCSV() {
             duration: 3000,
             isClosable: true,
          });
+         setState(true);
       };
 
       reader.readAsText(inputFile);
@@ -80,56 +85,111 @@ function ImportCSV() {
 
    return (
       <VStack my={7} justify={"stretch"} spacing={5}>
-         <Heading
-            mb={3}
-            pb={4}
-            align={"center"}
-            color={"blue.500"}
-            fontFamily={"Helvetica"}
-            fontWeight={800}
-            letterSpacing={0.5}
-            borderBottom={"1px solid"}
-            borderColor={"blackAlpha.100"}
-         >
-            import invoice.csv
-         </Heading>
-         <Text
-            fontFamily={"Helvetica"}
-            letterSpacing={0.5}
-            align={"center"}
-            w={700}
-            pb={4}
-            color={"blackAlpha.700"}
-         >
-            Upload a .csv file, File should have s.no, amount, and item_type in
-            it to get the taxes.
-            <br />
-            Also, you will be getting the taxes of those amounts which have
-            item_type as 0, 1, or 2 other than that taxes will be "NA"
-         </Text>
-         <HStack>
-            <Input
-               py={1}
-               type="file"
-               accept=".csv"
-               border={"2px solid"}
-               borderColor={"blue.500"}
-               onChange={(event) => setInputFile(event.target.files[0])}
-            />
-            <Button px={7} colorScheme={"blue"} onClick={handleFile}>
-               Upload
-            </Button>
-         </HStack>
-         <Button
-            w={447}
-            disabled={!url}
-            as={"a"}
-            href={url}
-            colorScheme={"green"}
-            download="result"
-         >
-            Download
-         </Button>
+         {!state && (
+            <>
+               <Heading
+                  mb={3}
+                  pb={4}
+                  align={"center"}
+                  color={"blue.500"}
+                  fontFamily={"Helvetica"}
+                  fontWeight={800}
+                  letterSpacing={0.5}
+                  borderBottom={"1px solid"}
+                  borderColor={"blackAlpha.100"}
+               >
+                  import invoice.csv
+               </Heading>
+               <Text
+                  fontFamily={"Helvetica"}
+                  letterSpacing={0.5}
+                  align={"center"}
+                  w={700}
+                  pb={4}
+                  color={"blackAlpha.700"}
+               >
+                  Upload a .csv file, File should have s.no, amount, and
+                  item_type in it to get the taxes.
+                  <br />
+                  Also, you will be getting the taxes of those amounts which
+                  have item_type as 0, 1, or 2 other than that taxes will be
+                  "NA"
+               </Text>
+               <FormControl
+                  w={"xs"}
+                  p={4}
+                  borderRadius={"md"}
+                  boxShadow={"md"}
+                  isRequired
+               >
+                  <FormLabel>File</FormLabel>
+                  <Input
+                     py={1}
+                     mb={2}
+                     type="file"
+                     accept=".csv"
+                     border={"2px solid"}
+                     borderColor={"blue.500"}
+                     onChange={(event) => setInputFile(event.target.files[0])}
+                  />
+                  <Button
+                     w={"full"}
+                     px={7}
+                     colorScheme={"blue"}
+                     onClick={handleFile}
+                  >
+                     Upload
+                  </Button>
+               </FormControl>
+            </>
+         )}
+         {state && (
+            <>
+               <Heading
+                  mb={3}
+                  pb={4}
+                  align={"center"}
+                  color={"blue.500"}
+                  fontFamily={"Helvetica"}
+                  fontWeight={800}
+                  letterSpacing={0.5}
+                  borderBottom={"1px solid"}
+                  borderColor={"blackAlpha.100"}
+               >
+                  tax-calculated
+               </Heading>
+               <VStack p={4} w={"xs"} borderRadius={"md"} boxShadow={"md"}>
+                  <Text
+                     pb={2}
+                     fontWeight={500}
+                     lineHeight={1.4}
+                     letterSpacing={0.2}
+                     color={"blackAlpha.700"}
+                  >
+                     Tax column has been added download the file of upload
+                     another one
+                  </Text>
+                  <Button
+                     w={"full"}
+                     as={"a"}
+                     href={url}
+                     colorScheme={"green"}
+                     download="result"
+                     leftIcon={<DownloadIcon />}
+                  >
+                     Download
+                  </Button>
+                  <Button
+                     w={"full"}
+                     onClick={() => setState(false)}
+                     colorScheme={"blue"}
+                     leftIcon={<AttachmentIcon />}
+                  >
+                     Upload Another File
+                  </Button>
+               </VStack>
+            </>
+         )}
       </VStack>
    );
 }
