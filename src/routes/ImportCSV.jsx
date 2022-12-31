@@ -53,6 +53,8 @@ function ImportCSV() {
    const toast = useToast();
    const [url, setUrl] = useState("");
    const [state, setState] = useState(false);
+   const [calBtn, setCalBtn] = useState(false);
+   const [uploadedFile, setUploadedFile] = useState([]);
 
    const handleFile = () => {
       if (!inputFile.name) {
@@ -68,9 +70,8 @@ function ImportCSV() {
       const reader = new FileReader();
 
       reader.onload = async (event) => {
-         let file = addTaxes(event.target.result.split("\r\n"));
+         setUploadedFile(event.target.result.split("\r\n"));
 
-         setUrl(URL.createObjectURL(file));
          toast({
             title: "file uploaded successfully",
             status: "success",
@@ -78,10 +79,26 @@ function ImportCSV() {
             duration: 3000,
             isClosable: true,
          });
-         setState(true);
+         setCalBtn(true);
       };
 
       reader.readAsText(inputFile);
+   };
+
+   const handleCalculate = () => {
+      let file = addTaxes(uploadedFile);
+
+      setUrl(URL.createObjectURL(file));
+      toast({
+         title: "tax calculated successfully",
+         status: "success",
+         position: "top",
+         duration: 3000,
+         isClosable: true,
+      });
+      setState(true);
+      setCalBtn(false);
+      setInputFile({});
    };
 
    return (
@@ -120,17 +137,39 @@ function ImportCSV() {
                      type="file"
                      accept=".csv"
                      border={"2px solid"}
-                     borderColor={"blue.500"}
+                     borderColor={!calBtn ? "blue.500" : "green.500"}
                      onChange={(event) => setInputFile(event.target.files[0])}
                   />
-                  <Button
-                     w={"full"}
-                     px={7}
-                     colorScheme={"blue"}
-                     onClick={handleFile}
-                  >
-                     Upload
-                  </Button>
+                  {!calBtn ? (
+                     <Button
+                        w={"full"}
+                        px={7}
+                        colorScheme={"blue"}
+                        onClick={handleFile}
+                     >
+                        Upload
+                     </Button>
+                  ) : (
+                     <>
+                        <Button
+                           w={"full"}
+                           px={7}
+                           mb={2}
+                           colorScheme={"green"}
+                           onClick={handleCalculate}
+                        >
+                           Calculate Tax
+                        </Button>
+                        <Button
+                           w={"full"}
+                           onClick={() => setState(false)}
+                           colorScheme={"blue"}
+                           leftIcon={<AttachmentIcon />}
+                        >
+                           Upload Another File
+                        </Button>
+                     </>
+                  )}
                </FormControl>
             </>
          )}
