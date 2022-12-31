@@ -147,28 +147,18 @@ function ImportCSV() {
                         colorScheme={"blue"}
                         onClick={handleFile}
                      >
-                        Upload
+                        Upload File
                      </Button>
                   ) : (
-                     <>
-                        <Button
-                           w={"full"}
-                           px={7}
-                           mb={2}
-                           colorScheme={"green"}
-                           onClick={handleCalculate}
-                        >
-                           Calculate Tax
-                        </Button>
-                        <Button
-                           w={"full"}
-                           onClick={() => setState(false)}
-                           colorScheme={"blue"}
-                           leftIcon={<AttachmentIcon />}
-                        >
-                           Upload Another File
-                        </Button>
-                     </>
+                     <Button
+                        w={"full"}
+                        px={7}
+                        mb={2}
+                        colorScheme={"green"}
+                        onClick={handleCalculate}
+                     >
+                        Calculate Tax
+                     </Button>
                   )}
                </FormControl>
             </>
