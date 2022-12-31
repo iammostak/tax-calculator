@@ -27,10 +27,17 @@ function Navbar() {
             tax-calculator
          </Heading>
          <HStack spacing={4}>
-            <Button as={NavLink} to="/" px={7} borderRadius={"3xl"}>
+            <Button
+               data-testid="home"
+               as={NavLink}
+               to="/"
+               px={7}
+               borderRadius={"3xl"}
+            >
                data table
             </Button>
             <Button
+               data-testid="upload"
                as={NavLink}
                to="/uploadcsv"
                px={7}

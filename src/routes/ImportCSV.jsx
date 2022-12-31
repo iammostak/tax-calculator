@@ -11,6 +11,7 @@ import {
    VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import ContentTitle from "../components/ContentTitle";
 
 const tax_rates = { 0: 5, 1: 8, 2: 12 };
 
@@ -84,22 +85,10 @@ function ImportCSV() {
    };
 
    return (
-      <VStack my={7} justify={"stretch"} spacing={5}>
+      <VStack data-testid="upload-csv" my={7} justify={"stretch"} spacing={5}>
          {!state && (
             <>
-               <Heading
-                  mb={3}
-                  pb={4}
-                  align={"center"}
-                  color={"blue.500"}
-                  fontFamily={"Helvetica"}
-                  fontWeight={800}
-                  letterSpacing={0.5}
-                  borderBottom={"1px solid"}
-                  borderColor={"blackAlpha.100"}
-               >
-                  import invoice.csv
-               </Heading>
+               <ContentTitle>import invoice.csv</ContentTitle>
                <Text
                   pb={4}
                   w={700}
@@ -147,19 +136,7 @@ function ImportCSV() {
          )}
          {state && (
             <>
-               <Heading
-                  mb={3}
-                  pb={4}
-                  align={"center"}
-                  color={"blue.500"}
-                  fontFamily={"Helvetica"}
-                  fontWeight={800}
-                  letterSpacing={0.5}
-                  borderBottom={"1px solid"}
-                  borderColor={"blackAlpha.100"}
-               >
-                  tax-calculated
-               </Heading>
+               <ContentTitle>tax-calculated</ContentTitle>
                <VStack
                   p={4}
                   w={"xs"}

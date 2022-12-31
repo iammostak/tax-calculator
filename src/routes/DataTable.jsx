@@ -14,7 +14,10 @@ import {
    VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import ContentTitle from "../components/ContentTitle";
 import { invoices } from "../db.json";
+
+const tableHeaders = ["Serial No.", "Amount", "Item Type", "Calculate Tax"];
 
 function DataTable() {
    const [tax, setTax] = useState(0);
@@ -47,70 +50,36 @@ function DataTable() {
    };
 
    return (
-      <VStack my={7} justify={"stretch"} spacing={5}>
-         <Heading
-            mb={3}
-            pb={4}
-            align={"center"}
-            color={"blue.500"}
-            fontFamily={"Helvetica"}
-            fontWeight={800}
-            letterSpacing={0.5}
-            borderBottom={"1px solid"}
-            borderColor={"blackAlpha.100"}
-         >
-            data table
-         </Heading>
+      <VStack data-testid="data-table" my={7} justify={"stretch"} spacing={5}>
+         <ContentTitle>data table</ContentTitle>
          <Table
             size={"lg"}
             border={"1px solid"}
             borderColor={"blue.100"}
             variant={"striped"}
             colorScheme={"blue"}
+            data-testid="table"
          >
             <Thead bg={"blue.500"}>
                <Tr>
-                  <Th
-                     w={210}
-                     fontSize={"md"}
-                     textAlign={"center"}
-                     textTransform={"capitalize"}
-                     color={"white"}
-                  >
-                     Serial No.
-                  </Th>
-                  <Th
-                     w={210}
-                     fontSize={"md"}
-                     textAlign={"center"}
-                     textTransform={"capitalize"}
-                     color={"white"}
-                  >
-                     Amount
-                  </Th>
-                  <Th
-                     w={210}
-                     fontSize={"md"}
-                     textAlign={"center"}
-                     textTransform={"capitalize"}
-                     color={"white"}
-                  >
-                     Item Type
-                  </Th>
-                  <Th
-                     w={210}
-                     fontSize={"md"}
-                     textAlign={"center"}
-                     textTransform={"capitalize"}
-                     color={"white"}
-                  >
-                     Calculate Tax
-                  </Th>
+                  {tableHeaders.map((item, index) => (
+                     <Th
+                        data-testid="table-header"
+                        key={index + 1}
+                        w={210}
+                        fontSize={"md"}
+                        textAlign={"center"}
+                        textTransform={"capitalize"}
+                        color={"white"}
+                     >
+                        {item}
+                     </Th>
+                  ))}
                </Tr>
             </Thead>
             <Tbody>
                {invoices.map((item) => (
-                  <Tr key={item.sno}>
+                  <Tr data-testid="table-row" key={item.sno}>
                      <Td textAlign={"center"} fontWeight={500}>
                         {item.sno}
                      </Td>
@@ -142,6 +111,7 @@ function DataTable() {
                            </Tooltip>
                         ) : (
                            <Button
+                              data-testid="tax-cal-btn"
                               px={7}
                               colorScheme={"blue"}
                               borderRadius={"3xl"}
@@ -169,6 +139,7 @@ function DataTable() {
                Calculated Tax Value :
             </Heading>
             <Heading
+               data-testid="tax-value"
                size={"lg"}
                align={"center"}
                color={"blackAlpha.700"}
@@ -179,6 +150,7 @@ function DataTable() {
                ₹{tax.toFixed(2) || "0.00"}
             </Heading>
             <Text
+               data-testid="tax-rate"
                color={"green.500"}
                fontFamily={"Helvetica"}
                fontWeight={600}
