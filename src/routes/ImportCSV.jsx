@@ -137,6 +137,7 @@ function ImportCSV() {
                      type="file"
                      accept=".csv"
                      border={"2px solid"}
+                     disabled={calBtn}
                      borderColor={!calBtn ? "blue.500" : "green.500"}
                      onChange={(event) => setInputFile(event.target.files[0])}
                   />
@@ -150,15 +151,25 @@ function ImportCSV() {
                         Upload File
                      </Button>
                   ) : (
-                     <Button
-                        w={"full"}
-                        px={7}
-                        mb={2}
-                        colorScheme={"green"}
-                        onClick={handleCalculate}
-                     >
-                        Calculate Tax
-                     </Button>
+                     <>
+                        <Button
+                           w={"full"}
+                           px={7}
+                           mb={2}
+                           colorScheme={"green"}
+                           onClick={handleCalculate}
+                        >
+                           Calculate Tax
+                        </Button>
+                        <Button
+                           w={"full"}
+                           onClick={() => setCalBtn(false)}
+                           colorScheme={"blue"}
+                           leftIcon={<AttachmentIcon />}
+                        >
+                           Upload Another File
+                        </Button>
+                     </>
                   )}
                </FormControl>
             </>
