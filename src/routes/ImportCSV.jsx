@@ -132,6 +132,7 @@ function ImportCSV() {
                >
                   <FormLabel>File</FormLabel>
                   <Input
+                     data-testid="input-file"
                      py={1}
                      mb={2}
                      type="file"
@@ -143,6 +144,7 @@ function ImportCSV() {
                   />
                   {!calBtn ? (
                      <Button
+                        data-testid="upload-btn"
                         w={"full"}
                         px={7}
                         colorScheme={"blue"}
@@ -153,6 +155,7 @@ function ImportCSV() {
                   ) : (
                      <>
                         <Button
+                           data-testid="calculate-btn"
                            w={"full"}
                            px={7}
                            mb={2}
@@ -178,6 +181,7 @@ function ImportCSV() {
             <>
                <ContentTitle>tax-calculated</ContentTitle>
                <VStack
+                  data-testid="download-form"
                   p={4}
                   w={"xs"}
                   align={"stretch"}
