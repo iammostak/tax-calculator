@@ -79,7 +79,7 @@ test("conditional rendering working correctly in csv page", () => {
    const input_file = getByTestId("input-file");
    const upload_btn = getByTestId("upload-btn");
 
-   const content = `
+   const data = `
       s.no, amount, item_type\r 
       1, 1200, 0\r
       2, 25000, 1\r
@@ -88,8 +88,8 @@ test("conditional rendering working correctly in csv page", () => {
       5, 23456, 3
    `;
 
-   let blob = new Blob([content], { type: "text/csv" });
-   let file = new File([blob], "invoice.csv", { type: "text/csv" });
+   const blob = new Blob([data], { type: "text/csv" });
+   const file = new File([blob], "invoice.csv", { type: "text/csv" });
 
    fireEvent.change(input_file, { target: { files: [file] } });
 
